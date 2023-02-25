@@ -2,6 +2,7 @@ const express = require('express')
 const responseHandlers = require('./utils/handleResponses')
 const db = require('./utils/database')
 const initModels = require('./models/initModels')
+const config = require('../config').api
 const userRouter = require('./users/users.router')
 const authRouter = require('./auth/auth.router')
 
@@ -25,8 +26,7 @@ app.get('/', (req, res) => {
         status: 200,
         message: 'Servidor inicializado correctamente',
         data: {
-            "users": "http://localhost:9000/api/v1/users",
-            "conversations": "http://localhost:9000/api/v1/conversations"
+            "users": `${config.host}/api/v1/users`,
         }
     })
 })
@@ -39,10 +39,10 @@ app.use('*', (req, res)=> {
     responseHandlers.error({
         res,
         status: 404,
-        message: 'URL not found, please try with http://localhost:9000/',
+        message: `URL not found, please try with ${config.host}`,
     })
 })
 
-app.listen(9000,() => {
-    console.log('Server started at port 9000')
+app.listen(config.port,() => {
+    console.log(`Server started at port ${config.port}`)
 })
