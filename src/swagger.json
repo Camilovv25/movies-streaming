@@ -1,0 +1,21 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Mi api de peliculas tipo neflis",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/v1/users":{
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Obtener todos mis usuarios"
+          },
+          "400": {
+            "description": "Ocurrio un error al tratar de obtener todos los usuarios"
+          }
+        }
+      }
+    }
+  }
+}

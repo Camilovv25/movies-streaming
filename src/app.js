@@ -1,4 +1,7 @@
 const express = require('express')
+const swaggerUi = require('swagger-ui-express')
+const swaggerDoc = require('./swagger.json')
+
 const responseHandlers = require('./utils/handleResponses')
 const db = require('./utils/database')
 const initModels = require('./models/initModels')
@@ -46,7 +49,7 @@ app.use('/api/v1/users', userRouter)
 app.use('/api/v1/auth', authRouter)
 app.use('/api/vi/movies', moviesRouter)
 app.use('/api/v1/genres', genreRouter)
-
+app.use('api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc))
 
 //? Esta debe ser la ultima ruta en mi app
 app.use('*', (req, res)=> {
